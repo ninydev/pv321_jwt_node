@@ -1,4 +1,5 @@
-import { createServer } from "http";
+import { createServer } from "http"; // Async - ES6
+// const http = require("http"); // Sync - CommonJS
 
 // Модуль загрузки конфигруации
 import dotenv from "dotenv";

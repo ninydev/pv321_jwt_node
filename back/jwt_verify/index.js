@@ -49,7 +49,8 @@ const httpServer = createServer( (req, res) => {
 
 
     if (!authHeader) {
-        res.end('Token not found')
+        res.writeHead(401, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: 'Token not found' }));
         return;
     }
 
