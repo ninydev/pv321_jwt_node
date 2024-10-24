@@ -1,0 +1,14 @@
+# Используем официальный образ MySQL
+FROM mysql:latest
+
+# Устанавливаем переменные окружения для MySQL
+ENV MYSQL_ROOT_PASSWORD=root \
+    MYSQL_DATABASE=mydatabase \
+    MYSQL_USER=myuser \
+    MYSQL_PASSWORD=mypassword
+
+# Открываем порт 3306 для доступа к MySQL
+EXPOSE 3306
+
+# Команда запуска MySQL
+CMD ["mysqld"]
