@@ -1,0 +1,10 @@
+# Используем официальный образ
+FROM node:latest
+
+# Обновляем пакеты и устанавливаем необходимые зависимости
+RUN apt update && apt upgrade -y && \
+    apt install -y mc && \
+    apt clean && rm -rf /var/lib/apt/lists/*
+
+# Команда по умолчанию при запуске контейнера
+CMD ["/bin/bash"]

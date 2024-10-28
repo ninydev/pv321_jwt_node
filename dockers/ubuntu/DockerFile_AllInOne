@@ -1,0 +1,41 @@
+# Используем официальный образ Ubuntu
+FROM ubuntu:latest
+
+# Указываем автора образа
+LABEL authors="keeper"
+
+# Обновляем пакеты и устанавливаем необходимые зависимости
+RUN apt update && apt upgrade -y && \
+    apt install -y \
+    mc \
+    nginx \
+    curl \
+    gnupg2 \
+    software-properties-common \
+    lsb-release \
+    unzip && \
+    apt clean && rm -rf /var/lib/apt/lists/*
+
+# Устанавливаем Node.js (последнюю версию)
+RUN curl -fsSL https://deb.nodesource.com/setup_current.x | bash - && \
+    apt install -y nodejs && \
+    apt clean && rm -rf /var/lib/apt/lists/*
+
+# Устанавливаем Yarn (последнюю версию)
+RUN npm install --global yarn
+
+# Устанавливаем PHP (последнюю версию)
+RUN add-apt-repository ppa:ondrej/php -y && \
+    apt update && \
+    apt install -y php8.2 php8.2-cli php8.2-fpm php8.2-mbstring php8.2-xml && \
+    apt clean && rm -rf /var/lib/apt/lists/*
+
+# Устанавливаем Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+
+# Устанавливаем рабочую директорию (по желанию)
+WORKDIR /app
+
+# Команда по умолчанию при запуске контейнера
+CMD ["/bin/bash"]
