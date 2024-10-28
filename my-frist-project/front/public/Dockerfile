@@ -1,8 +1,4 @@
-# Используем официальный образ Ubuntu
-FROM nginx:latest
-
-# Указываем автора образа
-LABEL authors="keeper"
+FROM node:20
 
 # Обновляем пакеты и устанавливаем необходимые зависимости
 RUN apt update && apt upgrade -y && \
@@ -12,9 +8,14 @@ RUN apt update && apt upgrade -y && \
 # Устанавливаем рабочую директорию (по желанию)
 WORKDIR /app
 
+# Копіювання кода у рабочу папку
+COPY ./src /app
+
+# Install modules, lib e.t.c
+RUN npm install
 
 
+# Start Container
+CMD ["npm", "run", "start"]
 
 
-# Команда по умолчанию при запуске контейнера
-CMD ["/bin/bash"]
