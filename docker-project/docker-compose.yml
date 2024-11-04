@@ -1,0 +1,31 @@
+version: '3.1'
+
+services:
+
+  vp321.api.csharp:
+    build:
+      context: ./backend/csharp-api
+    env_file:
+      - ./jwt.env
+    ports:
+      - "5000:5000"
+
+  vp321.api.express:
+    build:
+      context: ./backend/express-api
+    env_file:
+      - ./jwt.env
+    environment:
+      - SERVER_NAME=ExpressServer
+    ports:
+      - "5555:3000"
+
+  vp321.api.http:
+    build:
+      context: ./backend/http-api
+    env_file:
+      - ./jwt.env
+    environment:
+      - SERVER_NAME=HttpServer
+    ports:
+      - "7777:3000"
