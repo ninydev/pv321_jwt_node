@@ -2,21 +2,13 @@ version: '3.1'
 
 services:
 
-  vp321.nginx:
-    image: nginx:latest
-    volumes:
-      - ./services/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-    ports:
-      - "80:80"
-
-
-
   vp321.api.csharp:
     build:
       context: ./backend/csharp-api
     env_file:
       - ./jwt.env
-
+#    ports:
+#      - "5000:5000"
 
   vp321.api.express:
     build:
@@ -26,7 +18,8 @@ services:
     environment:
       - SERVER_NAME=ExpressServer
       - SERVER_PORT=4000
-
+#    ports:
+#      - "5555:4000"
 
   vp321.api.http:
     build:
@@ -35,4 +28,6 @@ services:
       - ./jwt.env
     environment:
       - SERVER_NAME=HttpServer
+#    ports:
+#      - "7777:3000"
 
