@@ -8,6 +8,10 @@ services:
       - ./services/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     ports:
       - "80:80"
+    depends_on:
+      - vp321.api.csharp
+      - vp321.api.express
+      - vp321.api.http
 
 
 
@@ -36,3 +40,18 @@ services:
     environment:
       - SERVER_NAME=HttpServer
 
+  vp321.api.hiload1:
+    build:
+      context: ./backend/http-api
+    env_file:
+      - ./jwt.env
+    environment:
+      - SERVER_NAME=HiLoad First
+
+  vp321.api.hiload2:
+    build:
+      context: ./backend/http-api
+    env_file:
+      - ./jwt.env
+    environment:
+      - SERVER_NAME=HiLoad Second
