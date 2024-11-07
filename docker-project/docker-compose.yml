@@ -46,6 +46,7 @@ services:
       - ./jwt.env
     environment:
       - SERVER_NAME=HttpServer
+      - REDIS_HOST=vp321.redis
 
   vp321.api.hiload1:
     build:
@@ -54,6 +55,7 @@ services:
       - ./jwt.env
     environment:
       - SERVER_NAME=HiLoad First
+      - REDIS_HOST=vp321.redis
 
   vp321.api.hiload2:
     build:
@@ -62,3 +64,4 @@ services:
       - ./jwt.env
     environment:
       - SERVER_NAME=HiLoad Second
+      - REDIS_HOST=vp321.redis

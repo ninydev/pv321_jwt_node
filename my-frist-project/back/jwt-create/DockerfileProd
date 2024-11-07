@@ -1,0 +1,16 @@
+FROM node:22
+
+# Устанавливаем рабочую директорию (по желанию)
+WORKDIR /app
+
+# Копіювання кода у рабочу папку
+COPY ./src /app
+
+# Install modules, lib e.t.c
+RUN npm install
+
+
+# Start Container
+CMD ["npm", "run", "start"]
+
+
