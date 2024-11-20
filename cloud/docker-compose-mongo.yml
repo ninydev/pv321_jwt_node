@@ -1,0 +1,24 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+
+
+  cloud.mongo-express.pv321:
+    image: mongo-express
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: keeper
+      ME_CONFIG_MONGODB_ADMINPASSWORD: 4bPs2OBy71PKJv8S
+      ME_CONFIG_MONGODB_URL: mongodb+srv://keeper:4bPs2OBy71PKJv8S@mydb.4jlal.mongodb.net/?retryWrites=true&w=majority&appName=MyDb
+      ME_CONFIG_BASICAUTH: false
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    ports:
+      - "8090:8080"
+
+
+networks:
+  default:
+    driver: bridge
